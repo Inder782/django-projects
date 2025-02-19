@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Task List</title>
+    </head>
+    <body style="background: linear-gradient(to right, rgb(12, 255, 210), purple);">
+        <h1 style="display: flex; justify-content: center; align-items: center; color:black;">
+            Task List are here  
+        </h1>
+        <form method="POST" action="{% url 'add_task' %}">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="Enter title">
+            <input type="text" name="description" placeholder="Enter Descrpiption">
+            <button type="sumbit">Enter task</button>
+        </form>
+    </body>
+</html>
