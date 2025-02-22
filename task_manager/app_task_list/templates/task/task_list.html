@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Task List</title>
+        <title>Task LIST</title>
     </head>
     <body style="background: linear-gradient(to right, rgb(12, 255, 210), purple);">
         <h1 style="display: flex; justify-content: center; align-items: center; color:black;">
-            Task List are here  
+           Task List
         </h1>
         <form method="POST" action="{% url 'add_task' %}" style="display: flex;justify-content: center; gap: 25px;">
             {% csrf_token %}
