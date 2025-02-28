@@ -17,29 +17,46 @@ import {
 import { Input } from "@/components/ui/input"
 
 const formSchema = z.object({
-  username: z.string().min(2, {
+  title: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
 })
 
 export function ProfileForm() {
-  // ...
+   // 1. Define your form.
+   const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: "",
+    },
+  })
+ 
+  // 2. Define a submit handler.
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values)
+    const res = await fetch('http://localhost:3000/api/posts',
+      {method:"POST",body:JSON.stringify(values)});
+    console.log(res)
+  }
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name="username"
+          name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Username</FormLabel>
+              
+              <FormLabel>Title</FormLabel>
               <FormControl>
-                <Input placeholder="shadcn" {...field} />
+                <Input placeholder="title" {...field} />
               </FormControl>
+              
               <FormDescription>
                 This is your public display name.
               </FormDescription>
+              
               <FormMessage />
             </FormItem>
           )}
@@ -49,3 +66,4 @@ export function ProfileForm() {
     </Form>
   )
 }
+export default ProfileForm
