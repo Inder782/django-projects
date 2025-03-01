@@ -46,7 +46,9 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "allauth.account.middleware.AccountMiddleware"
+    "allauth.account.middleware.AccountMiddleware",
+    "corsheaders.middleware.CorsMiddleware",  # Add this at the top
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = "auth.urls"
@@ -135,16 +137,6 @@ SIMPLE_JWT = {
     "BLACKLIST_AFTER_ROTATION": True,
 }
 
-CORS_ALLOWED_ORIGINS=True
-# CORS for frontend communication
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # Adjust based on your frontend URL
-]
-
-SITE_ID = 1  # Required for Django Allauth
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -152,3 +144,10 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {'access_type': 'online'},
     }
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  
+    "http://127.0.0.1:3000"   
+]
+
+CORS_ALLOW_ALL_ORIGINS = True  
