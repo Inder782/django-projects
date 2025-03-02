@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path
-from backend.views import simple_function
+from backend.views import CreateUser
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("backend/register",simple_function,name="register")
+    path("backend/register",CreateUser,name="register")
 ]
