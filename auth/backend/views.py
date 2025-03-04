@@ -6,8 +6,7 @@ import json
 # Create your views here.
 
 @api_view(['POST'])
-def simple_function(request):
-    data= json.loads(request.body)
+def CreateUser(request):
+    data=json.loads(request)
     print(data)
-    data={"message":" love from backend"}
-    return Response(data,status=200)
+    return Response({"message":"here i am "},status=200)

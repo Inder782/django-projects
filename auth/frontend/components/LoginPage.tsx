@@ -10,13 +10,11 @@ const LoginPage = () => {
     const data = new FormData(e.currentTarget);
     const username = data.get("username");
     const password = data.get("password");
-
-  
     if (username && password){
       CreateUser(username,password)
     }
-    
   };
+  
   return (
     <form className="flex gap-10" onSubmit={handlesubmit}>
       <label>Enter username here</label>
