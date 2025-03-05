@@ -5,14 +5,17 @@ export const CreateUser = async (username: string, password: string) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
+
+    // Parse response JSON
+    const data = await response.json();
+
     if (!response.ok) {
-        throw new Error(`Request failed with status code ${response.status}`);
-      }
-    
-    window.alert("User created Successfully")
-    window.location.href="/login"
+      return data.error;
+    }
+
+    return data;
   } catch (error) {
-    console.error("Error creating user",error)
-    throw error
+    console.error("Error:", error);
+    window.alert("Something went wrong. Please try again.");
   }
 };

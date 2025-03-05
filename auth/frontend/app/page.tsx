@@ -1,12 +1,12 @@
-import LoginPage from '@/components/LoginPage'
-import React from 'react'
+import ProfileForm from "@/components/ProfileForm";
+import React from "react";
 
 const page = () => {
   return (
     <div>
-      <LoginPage/>
+      <ProfileForm />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;
