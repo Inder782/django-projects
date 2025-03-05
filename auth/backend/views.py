@@ -5,7 +5,6 @@ from rest_framework import status
 import json
 
 @api_view(['POST'])
-<<<<<<< HEAD
 def simple_function(request):
     try:
         #get data
@@ -32,9 +31,3 @@ def simple_function(request):
     #handle expection
     except Exception as e:
         return Response({"error":str(e)},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-=======
-def CreateUser(request):
-    data=json.loads(request)
-    print(data)
-    return Response({"message":"here i am "},status=200)
->>>>>>> 9c87f8e8e4bfc6280d58201443aaf90cb50187e4
