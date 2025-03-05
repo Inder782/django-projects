@@ -1,9 +1,16 @@
 
 from pathlib import Path
 from datetime import timedelta
+import environ
+from dotenv import load_dotenv
+import os 
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env= environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR,".env"))
 
 
 # Quick-start development settings - unsuitable for production
@@ -12,7 +19,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-c_dint_#@^bo3)+#i^4$+1iqa4mjti3*sb&9w^roukse*0_=tx"
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -71,23 +77,34 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "auth.wsgi.application"
 
+<<<<<<< HEAD
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES= {
+=======
+DATABASES = {
+>>>>>>> 9c87f8e8e4bfc6280d58201443aaf90cb50187e4
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
+<<<<<<< HEAD
         'PASSWORD': 'postgres',
+=======
+        'PASSWORD': 'pwd',
+>>>>>>> 9c87f8e8e4bfc6280d58201443aaf90cb50187e4
         'HOST': '0.0.0.0',
         'PORT': '5432',
     }
 }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9c87f8e8e4bfc6280d58201443aaf90cb50187e4
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -147,9 +164,6 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  
-    "http://127.0.0.1:3000"   
-]
+CORS_ALLOWED_ORIGINS = ["http://localhost:3001", "http://127.0.0.1:30001"]
 
 CORS_ALLOW_ALL_ORIGINS = True  
