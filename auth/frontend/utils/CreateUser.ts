@@ -12,8 +12,8 @@ export const CreateUser = async (username: string, password: string) => {
     if (!response.ok) {
       return data.error;
     }
-
-    return data;
+    window.alert("User created successfully");
+    return (window.location.href = "/login");
   } catch (error) {
     console.error("Error:", error);
     window.alert("Something went wrong. Please try again.");
