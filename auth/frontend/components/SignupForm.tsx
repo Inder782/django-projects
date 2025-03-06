@@ -25,7 +25,7 @@ const formSchema = z.object({
   password: z.string().min(2, { message: "Atleast two characters" }),
 });
 
-export default function ProfileForm() {
+export default function SignupForm() {
   const [status, setstatus] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({

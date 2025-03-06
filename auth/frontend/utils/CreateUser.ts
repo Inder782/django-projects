@@ -19,3 +19,11 @@ export const CreateUser = async (username: string, password: string) => {
     window.alert("Something went wrong. Please try again.");
   }
 };
+
+export const LoginUser = async (username: string, password: string) => {
+  const response = await fetch("http://127.0.0.1:8000/backend/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  });
+};
