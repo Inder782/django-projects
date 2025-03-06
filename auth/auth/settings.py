@@ -77,34 +77,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "auth.wsgi.application"
 
-<<<<<<< HEAD
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES= {
-=======
-DATABASES = {
->>>>>>> 9c87f8e8e4bfc6280d58201443aaf90cb50187e4
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',
         'USER': 'postgres',
-<<<<<<< HEAD
         'PASSWORD': 'postgres',
-=======
-        'PASSWORD': 'pwd',
->>>>>>> 9c87f8e8e4bfc6280d58201443aaf90cb50187e4
         'HOST': '0.0.0.0',
         'PORT': '5432',
     }
 }
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9c87f8e8e4bfc6280d58201443aaf90cb50187e4
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
