@@ -13,13 +13,22 @@ def CreateUser(request):
 
         id = data.get("username")
         pwd = data.get("password")
+        #get data
+        data=request.data
+        
+        #extract id and password
+        id=data.get('username')
+        pwd= data.get('password')
 
+        #handle if either one is not provided
         if not id or not pwd:
             return Response(
                 {"error": "Username or password is required"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-
+            return Response({"error":"Username or password is required"},status=status.HTTP_400_BAD_REQUEST)
+        
+        #check if user already exist
         if User.objects.filter(username=id).exists():
             return Response(
                 {"error": "User already exists"}, status=status.HTTP_400_BAD_REQUEST
@@ -62,3 +71,4 @@ def LoginUser(request):
         return Response(
             {"message": "Invalid JSON format"}, status=status.HTTP_400_BAD_REQUEST
         )
+

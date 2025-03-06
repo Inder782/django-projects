@@ -1,6 +1,6 @@
 export const CreateUser = async (username: string, password: string) => {
   try {
-    const response = await fetch("http://127.0.0.1:8000/backend/register", {
+      const response = await fetch("http://127.0.0.1:8000/backend/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -12,8 +12,8 @@ export const CreateUser = async (username: string, password: string) => {
     if (!response.ok) {
       return data.error;
     }
-
-    return data;
+    window.alert("User created successfully");
+    return (window.location.href = "/login");
   } catch (error) {
     console.error("Error:", error);
     window.alert("Something went wrong. Please try again.");

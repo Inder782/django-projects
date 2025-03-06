@@ -6,4 +6,4 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("backend/register",CreateUser,name="register"),
     path("backend/login",LoginUser,name="login"),
-]
+
