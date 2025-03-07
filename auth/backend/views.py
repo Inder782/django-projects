@@ -1,7 +1,9 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import status
 import json
 
@@ -13,22 +15,21 @@ def CreateUser(request):
 
         id = data.get("username")
         pwd = data.get("password")
-        #get data
-        data=request.data
-        
-        #extract id and password
-        id=data.get('username')
-        pwd= data.get('password')
+        # get data
+        data = request.data
 
-        #handle if either one is not provided
+        # extract id and password
+        id = data.get("username")
+        pwd = data.get("password")
+
+        # handle if either one is not provided
         if not id or not pwd:
             return Response(
                 {"error": "Username or password is required"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-            return Response({"error":"Username or password is required"},status=status.HTTP_400_BAD_REQUEST)
-        
-        #check if user already exist
+
+        # check if user already exist
         if User.objects.filter(username=id).exists():
             return Response(
                 {"error": "User already exists"}, status=status.HTTP_400_BAD_REQUEST
@@ -62,7 +63,17 @@ def LoginUser(request):
         print(user)
         if user is not None:
             login(request, user)
-            return Response({"message": "Login Successfull"}, status=status.HTTP_200_OK)
+            refresh = RefreshToken.for_user(user)
+            access_token = str(refresh.access_token)
+
+            return Response(
+                {
+                    "message": "Login Successfull",
+                    "access_token": access_token,
+                    "refresh_token": str(refresh),
+                },
+                status=status.HTTP_200_OK,
+            )
         else:
             return Response(
                 {"message": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST
@@ -72,3 +83,8 @@ def LoginUser(request):
             {"message": "Invalid JSON format"}, status=status.HTTP_400_BAD_REQUEST
         )
 
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def secure_page(request):
+    user=request.user
+    return Response({"message":f"Hello {user}, you are authenticated"})
