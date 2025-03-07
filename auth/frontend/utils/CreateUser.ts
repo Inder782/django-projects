@@ -1,6 +1,6 @@
 export const CreateUser = async (username: string, password: string) => {
   try {
-      const response = await fetch("http://127.0.0.1:8000/backend/register", {
+    const response = await fetch("http://127.0.0.1:8000/backend/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
@@ -26,4 +26,9 @@ export const LoginUser = async (username: string, password: string) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
   });
+  const data = await response.json();
+  if (response.ok) {
+    localStorage.setItem("access_token", data.access_token);
+    localStorage.setItem("refresh_token", data.refresh_token);
+  }
 };

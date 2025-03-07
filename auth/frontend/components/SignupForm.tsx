@@ -81,6 +81,13 @@ export default function SignupForm() {
           {status && <p className="text-blue-500">{status}</p>}
           <Button type="submit">Submit</Button>
         </form>
+        <Button
+          onClick={() => {
+            window.location.href = "/login";
+          }}
+        >
+          Login
+        </Button>
       </Form>
     </div>
   );
